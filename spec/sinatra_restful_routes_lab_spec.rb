@@ -57,10 +57,10 @@ describe "Recipe App" do
       expect(page.body).to include(recipe_cook_time)
     end
 
-    it "contains a form to delete the recipe" do
-      expect(page.find(:css, "form")[:action]).to eq("/recipes/#{@recipe1.id}")
+    it "contains a links to delete the recipe" do
+      expect(last_response.body).to include("/recipes/#{@recipe1.id}/delete")
     end
-
+    
     it 'deletes via a DELETE request' do
       expect(page.find(:css, "form input[name=_method]", :visible => false)[:value]).to match(/delete/i)
     end
